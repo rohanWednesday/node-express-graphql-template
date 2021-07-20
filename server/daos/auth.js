@@ -13,7 +13,8 @@ export const getUserBySignIn = async (email, password) => {
 
 export const createUserBySignup = async (firstName, lastName, email, password) => {
   const encryptedPassword = await createPassword(password);
-  await db.users.create({
+  return await db.users.create({
+    id: (await db.users.count()) + 1,
     firstName,
     lastName,
     email,
